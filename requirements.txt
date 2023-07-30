@@ -4,6 +4,7 @@
 # or run `make init` to create this file automatically based on the template.
 # You can also run `make switch-to-poetry` to use the poetry package manager.
 
-spotdl~=4.2.0
 PyYAML~=6.0.1
 setuptools~=65.5.1
+requests~=2.31.0
+spotipy~=2.23.0

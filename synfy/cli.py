@@ -1,12 +1,6 @@
-"""CLI interface for synfy project.
-
-Be creative! do whatever you want!
-
-- Install click or typer and create a CLI app
-- Use builtin argparse
-- Start a web application
-- Import things from your .base module
-"""
+from synfy.models.AppDataHandler import AppDataHandler
+from synfy.models.PropertiesBuilder import PropertiesBuilder
+from synfy.models.SpotDlWrapper import SpotDlWrapper
 
 
 def main():  # pragma: no cover
@@ -25,4 +19,7 @@ def main():  # pragma: no cover
         * List all available tasks
         * Run an application (Flask, FastAPI, Django, etc.)
     """
+    propertiesBuilder = PropertiesBuilder()
+    appDataHandler = AppDataHandler(propertiesBuilder)
+    spotDlWrapper = SpotDlWrapper(propertiesBuilder)
     print("This will do something")

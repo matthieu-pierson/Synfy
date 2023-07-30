@@ -43,6 +43,7 @@ class PropertiesBuilder:
         self.client_secret = get_value_from_dict(self.settings_dict, "client_secret")
         self.redirect_uri = get_value_from_dict(self.settings_dict, "redirect_uri")
         self.scope = get_value_from_dict(self.settings_dict, "scope")
+        self.app_name = get_value_from_dict(self.settings_dict, "app_name")
 
 
 if __name__ == "__main__":

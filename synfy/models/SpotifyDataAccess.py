@@ -8,8 +8,6 @@ from spotipy.oauth2 import SpotifyOAuth
 from datetime import datetime, timedelta, time
 import time
 
-from src.main.models.RecorderV2 import Recorder
-
 
 def median_date(data):
     sorted_data = sorted([datetime.strptime(d, '%Y-%m-%d %H:%M:%S') for d in data])
@@ -190,16 +188,13 @@ def parse_artists(data):
 
 
 class SpotifyDataAccess:
-    def __init__(self,
-                 client_id="84cb72428eba411495f7599023c8c8da",
-                 client_secret="543a55fed80145bfbe195ea42ff7c6ba",
-                 redirect_uri="http://localhost:5000/callback"):
+    def __init__(self,propertiesBuilder):
         self.albumList = None
         self.liked_songs_list = None
-        self.client_id = client_id
-        self.client_secret = client_secret
+        self.client_id = propertiesBuilder.client_id
+        self.client_secret = propertiesBuilder.client_secret
         self.playlist_id = None
-        self.redirect_uri = redirect_uri
+        self.redirect_uri = propertiesBuilder.redirect_uri
         self.scope = "user-library-read playlist-modify-private playlist-read-private playlist-read-collaborative " \
                      "user-follow-read user-read-playback-state user-modify-playback-state user-read-private user-read-email"
         self.sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=self.client_id,

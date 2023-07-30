@@ -3,8 +3,8 @@ import platform
 
 
 class AppDataHandler:
-    def __init__(self, app_name):
-        self.app_name = app_name
+    def __init__(self, propertiesBuilder):
+        self.app_name = propertiesBuilder.app_name
         self.appdata_folder = self.get_appdata_folder()
 
     def get_appdata_folder(self):
