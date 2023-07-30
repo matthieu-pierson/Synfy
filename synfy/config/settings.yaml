@@ -1,0 +1,8 @@
+---
+company: none
+spotify:
+  client_id: 84cb72428eba411495f7599023c8c8da
+  client_secret: 543a55fed80145bfbe195ea42ff7c6ba
+  redirect_uri: http://localhost:5000/callback
+  scope: user-library-read playlist-modify-private playlist-read-private playlist-read-collaborative user-follow-read user-read-playback-state user-modify-playback-state user-read-private user-read-email
+author: matthieu pierson
