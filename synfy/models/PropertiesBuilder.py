@@ -21,7 +21,7 @@ def process_yaml(data):
         return data
 
 
-def get_value_from_dict(data_dict, key):
+def get_value_from_dict(data_dict, key, default='Not Found'):
     keys = key.split('.')
     value = data_dict
 
@@ -29,8 +29,8 @@ def get_value_from_dict(data_dict, key):
         for k in keys:
             value = value[k]
         return value
-    except KeyError:
-        return None
+    except (KeyError, TypeError):
+        return default
 
 
 class PropertiesBuilder:
@@ -39,10 +39,10 @@ class PropertiesBuilder:
         my_path = os.path.abspath(os.path.dirname(__file__))
         self.config_file_path = os.path.join(my_path, "..\config\settings.yaml")
         self.settings_dict = read_yaml_file(self.config_file_path)
-        self.client_id = get_value_from_dict(self.settings_dict, "client_id")
-        self.client_secret = get_value_from_dict(self.settings_dict, "client_secret")
-        self.redirect_uri = get_value_from_dict(self.settings_dict, "redirect_uri")
-        self.scope = get_value_from_dict(self.settings_dict, "scope")
+        self.client_id = get_value_from_dict(self.settings_dict, "spotify.client_id")
+        self.client_secret = get_value_from_dict(self.settings_dict, "spotify.client_secret")
+        self.redirect_uri = get_value_from_dict(self.settings_dict, "spotify.redirect_uri")
+        self.scope = get_value_from_dict(self.settings_dict, "spotify.scope")
         self.app_name = get_value_from_dict(self.settings_dict, "app_name")
 
 

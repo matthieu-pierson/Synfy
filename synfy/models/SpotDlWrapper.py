@@ -11,7 +11,7 @@ class SpotDlWrapper:
     def download_playlist(self, playlist_url, output_path):
         try:
             spotdl_command = "spotdl"
-            args = [spotdl_command, "--playlist", playlist_url, "--output", output_path + "\{artists} - {title}"]
+            args = [spotdl_command, "--playlist", playlist_url, "--output", output_path + "\{year}\{artists} - {title}"]
             subprocess.run(args, check=True)
             print("Playlist downloaded successfully.")
         except subprocess.CalledProcessError as e:

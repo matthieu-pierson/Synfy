@@ -1,6 +1,7 @@
 from synfy.models.AppDataHandler import AppDataHandler
 from synfy.models.PropertiesBuilder import PropertiesBuilder
 from synfy.models.SpotDlWrapper import SpotDlWrapper
+from synfy.models.SpotifyDataAccess import SpotifyDataAccess
 
 
 def main():  # pragma: no cover
@@ -22,4 +23,7 @@ def main():  # pragma: no cover
     propertiesBuilder = PropertiesBuilder()
     appDataHandler = AppDataHandler(propertiesBuilder)
     spotDlWrapper = SpotDlWrapper(propertiesBuilder)
+    spotifyDataAccess = SpotifyDataAccess(propertiesBuilder)
+    spotifyDataAccess.create_playlist_from_uri_list(spotifyDataAccess.get_liked_songs(), "Every songs liked")
+    spotifyDataAccess.create_playlist_from_uri_list(spotifyDataAccess.get_liked_albums(), "Every albums liked")
     print("This will do something")
