@@ -8,10 +8,10 @@ class SpotDlWrapper:
         self.client_id = propertiesBuilder.client_id
         self.client_secret = propertiesBuilder.client_secret
 
-    def download_playlist(self, playlist_url, output_path):
+    def download_playlist(self, playlist_url, output_path, filename="\{year}\{artists} - {title}"):
         try:
             spotdl_command = "spotdl"
-            args = [spotdl_command, "--playlist", playlist_url, "--output", output_path + "\{year}\{artists} - {title}"]
+            args = [spotdl_command, "--playlist", playlist_url, "--output", output_path + filename]
             subprocess.run(args, check=True)
             print("Playlist downloaded successfully.")
         except subprocess.CalledProcessError as e:

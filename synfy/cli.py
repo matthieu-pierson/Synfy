@@ -24,6 +24,9 @@ def main():  # pragma: no cover
     appDataHandler = AppDataHandler(propertiesBuilder)
     spotDlWrapper = SpotDlWrapper(propertiesBuilder)
     spotifyDataAccess = SpotifyDataAccess(propertiesBuilder)
-    spotifyDataAccess.create_playlist_from_uri_list(spotifyDataAccess.get_liked_songs(), "Every songs liked")
-    spotifyDataAccess.create_playlist_from_uri_list(spotifyDataAccess.get_liked_albums(), "Every albums liked")
+    spotifyDataAccess.create_playlist_from_uri_list(spotifyDataAccess.get_liked_songs(), propertiesBuilder.playlist_liked_songs)
+    spotifyDataAccess.create_playlist_from_uri_list(spotifyDataAccess.get_liked_albums(), propertiesBuilder.playlist_liked_albums)
+    print(propertiesBuilder.playlists_to_download)
+    for playlist_name, playlists_config in zip(propertiesBuilder.playlists_to_download, propertiesBuilder.playlists_config):
+        spotDlWrapper.download_playlist(spotifyDataAccess.get_playlist_link(playlist_name), propertiesBuilder.download_path + "\\" + playlist_name, playlists_config)
     print("This will do something")

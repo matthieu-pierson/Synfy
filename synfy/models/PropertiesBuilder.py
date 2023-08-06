@@ -42,6 +42,11 @@ class PropertiesBuilder:
         self.client_id = get_value_from_dict(self.settings_dict, "spotify.client_id")
         self.client_secret = get_value_from_dict(self.settings_dict, "spotify.client_secret")
         self.redirect_uri = get_value_from_dict(self.settings_dict, "spotify.redirect_uri")
+        self.playlist_liked_songs = get_value_from_dict(self.settings_dict, "spotify.playlist_liked_songs")
+        self.playlist_liked_albums = get_value_from_dict(self.settings_dict, "spotify.playlist_liked_albums")
+        self.download_path = get_value_from_dict(self.settings_dict, "config.download_path")
+        self.playlists_to_download = get_value_from_dict(self.settings_dict, "config.playlists_to_download").split("~")
+        self.playlists_config = get_value_from_dict(self.settings_dict, "config.playlists_config").split("~")
         self.scope = get_value_from_dict(self.settings_dict, "spotify.scope")
         self.app_name = get_value_from_dict(self.settings_dict, "app_name")
 
