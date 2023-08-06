@@ -47,6 +47,7 @@ class PropertiesBuilder:
         self.download_path = get_value_from_dict(self.settings_dict, "config.download_path")
         self.playlists_to_download = get_value_from_dict(self.settings_dict, "config.playlists_to_download").split("~")
         self.playlists_config = get_value_from_dict(self.settings_dict, "config.playlists_config").split("~")
+        self.playlists_m3u = get_value_from_dict(self.settings_dict, "config.playlists_m3u").split("~")
         self.scope = get_value_from_dict(self.settings_dict, "spotify.scope")
         self.app_name = get_value_from_dict(self.settings_dict, "app_name")
 
