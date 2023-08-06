@@ -14,9 +14,9 @@ class SpotDlWrapper:
             args = [spotdl_command, "--playlist", playlist_url, "--output", output_path + filename]
             subprocess.run(args, check=True)
             print("Playlist downloaded successfully.")
-            if generate_m3u:
-                args = [spotdl_command, "--playlist", playlist_url, "--m3u", "--output", output_path]
-                subprocess.run(args, check=True)
+            if bool(generate_m3u):
+                args = [spotdl_command, playlist_url, "--m3u"]
+                subprocess.run(args, cwd=output_path, check=True)
                 print("Playlist created successfully.")
         except subprocess.CalledProcessError as e:
             print(f"An error occurred while downloading the playlist: {e}")
