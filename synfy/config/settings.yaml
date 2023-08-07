@@ -1,8 +1,9 @@
 ---
 app_name: Synfy
 config:
+  download_path: D:\01_Music
   playlists_to_download: Liked Songs~Liked Albums~Mix 1
-  playlists_config: \{year}\{artists} - {title}~\{year}\{artists} - {title}~\{artists} - {title}
+  playlists_config: \{year}\{artists} - {title}~\{year}\{artists} - {title}~\{year}\{artists} - {title}
   playlists_m3u: True~True~True
 spotify:
   client_id: "84cb72428eba411495f7599023c8c8da"

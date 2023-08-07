@@ -22,8 +22,8 @@ def main():  # pragma: no cover
     """
     propertiesBuilder = PropertiesBuilder()
     appDataHandler = AppDataHandler(propertiesBuilder)
-    spotDlWrapper = SpotDlWrapper(propertiesBuilder)
     spotifyDataAccess = SpotifyDataAccess(propertiesBuilder)
+    spotDlWrapper = SpotDlWrapper(propertiesBuilder, spotifyDataAccess)
     spotifyDataAccess.create_playlist_from_uri_list(spotifyDataAccess.get_liked_songs(), propertiesBuilder.playlist_liked_songs)
     spotifyDataAccess.create_playlist_from_uri_list(spotifyDataAccess.get_liked_albums(), propertiesBuilder.playlist_liked_albums)
     print(propertiesBuilder.playlists_to_download)

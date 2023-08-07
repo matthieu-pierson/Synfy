@@ -104,3 +104,14 @@ class SpotifyDataAccess:
                     return "https://open.spotify.com/playlist/" + playlist_uri.replace("spotify:playlist:", "")
                 else:
                     print(f"Playlist '{playlist_name}' not found.")
+
+    def get_playlist_name(self, playlist_url):
+        playlist_uri = playlist_url.replace("https://open.spotify.com/playlist/", "spotify:playlist:")
+        playlists = self.sp.current_user_playlists()
+        for playlist in playlists['items']:
+            print(playlist['uri'])
+            print(playlist_uri)
+            if playlist['uri'] == playlist_uri:
+                return playlist['name']
+            else:
+                print(f"Playlist '{playlist_url}' not found.")
