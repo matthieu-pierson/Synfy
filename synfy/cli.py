@@ -1,12 +1,7 @@
-"""CLI interface for synfy project.
-
-Be creative! do whatever you want!
-
-- Install click or typer and create a CLI app
-- Use builtin argparse
-- Start a web application
-- Import things from your .base module
-"""
+from synfy.models.AppDataHandler import AppDataHandler
+from synfy.models.PropertiesBuilder import PropertiesBuilder
+from synfy.models.SpotDlWrapper import SpotDlWrapper
+from synfy.models.SpotifyDataAccess import SpotifyDataAccess
 
 
 def main():  # pragma: no cover
@@ -25,4 +20,13 @@ def main():  # pragma: no cover
         * List all available tasks
         * Run an application (Flask, FastAPI, Django, etc.)
     """
+    propertiesBuilder = PropertiesBuilder()
+    appDataHandler = AppDataHandler(propertiesBuilder)
+    spotifyDataAccess = SpotifyDataAccess(propertiesBuilder)
+    spotDlWrapper = SpotDlWrapper(propertiesBuilder, spotifyDataAccess)
+    spotifyDataAccess.create_playlist_from_uri_list(spotifyDataAccess.get_liked_songs(), propertiesBuilder.playlist_liked_songs)
+    spotifyDataAccess.create_playlist_from_uri_list(spotifyDataAccess.get_liked_albums(), propertiesBuilder.playlist_liked_albums)
+    print(propertiesBuilder.playlists_to_download)
+    for playlist_name, playlists_config, playlists_m3u in zip(propertiesBuilder.playlists_to_download, propertiesBuilder.playlists_config, propertiesBuilder.playlists_m3u):
+        spotDlWrapper.download_playlist(spotifyDataAccess.get_playlist_link(playlist_name), propertiesBuilder.download_path, playlists_config, playlists_m3u)
     print("This will do something")
