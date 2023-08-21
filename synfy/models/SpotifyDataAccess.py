@@ -75,6 +75,7 @@ class SpotifyDataAccess:
         return final_list
 
     def create_playlist_from_uri_list(self, list_uris, playlist_name):
+        print("test 1")
         user_id = self.sp.current_user()["id"]
         self.delete_spotify_playlist_by_name(playlist_name)
         playlist = self.sp.user_playlist_create(user=user_id, name=playlist_name, public=False)
@@ -109,9 +110,6 @@ class SpotifyDataAccess:
         playlist_uri = playlist_url.replace("https://open.spotify.com/playlist/", "spotify:playlist:")
         playlists = self.sp.current_user_playlists()
         for playlist in playlists['items']:
-            print(playlist['uri'])
-            print(playlist_uri)
             if playlist['uri'] == playlist_uri:
                 return playlist['name']
-            else:
-                print(f"Playlist '{playlist_url}' not found.")
+        print(f"Playlist '{playlist_url}' not found.")

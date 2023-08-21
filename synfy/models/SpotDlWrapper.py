@@ -10,17 +10,18 @@ class SpotDlWrapper:
         self.client_secret = propertiesBuilder.client_secret
         self.spotifyDataAccess = spotifyDataAccess
 
-    def download_playlist(self, playlist_url, output_path, filename="\{year}\{artists} - {title}", generate_m3u=False):
+    def download_playlist(self, playlist_url, output_path, generate_m3u=False):
         try:
             spotdl_command = "spotdl"
-            args = [spotdl_command, "--playlist", playlist_url, "--output", output_path + filename]
-            subprocess.run(args, check=True)
-            print("Playlist downloaded successfully.")
             if bool(generate_m3u):
                 playlist_name = self.spotifyDataAccess.get_playlist_name(playlist_url)
                 args = [spotdl_command, playlist_url, "--m3u", playlist_name]
                 subprocess.run(args, cwd=output_path, check=True)
-                print("Playlist created successfully.")
+                print("Playlist downloaded successfully - m3u file created.\n")
+            else:
+                args = [spotdl_command, "--playlist", playlist_url]
+                subprocess.run(args, check=True)
+                print("Playlist downloaded successfully.\n")
         except subprocess.CalledProcessError as e:
             print(f"An error occurred while downloading the playlist: {e}")
         except Exception as e:
