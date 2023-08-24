@@ -2,6 +2,7 @@ import subprocess
 from synfy.models.PropertiesBuilder import PropertiesBuilder
 from synfy.models.SpotifyDataAccess import SpotifyDataAccess
 
+
 class SpotDlWrapper:
     def __init__(self, propertiesBuilder, spotifyDataAccess):
         self.client_id = propertiesBuilder.client_id
@@ -42,6 +43,7 @@ class SpotDlWrapper:
         except Exception as e:
             print(f"An unexpected error occurred: {e}")
 
+
 if __name__ == "__main__":
     propertiesBuilder = PropertiesBuilder()
     spotifyDataAccess = SpotifyDataAccess(propertiesBuilder)
@@ -50,4 +52,3 @@ if __name__ == "__main__":
     #                                 r"C:\Users\Matthieu\Downloads\Music")
     spotDlWrapper.init_default_config()
     spotDlWrapper.download_ffmpeg()
-
