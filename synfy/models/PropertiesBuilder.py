@@ -1,25 +1,10 @@
 import os
+import json
 
-import yaml
-
-
-def read_yaml_file(file_path):
-    with open(file_path, 'r') as yaml_file:
-        data = yaml.safe_load(yaml_file)
-        return process_yaml(data)
-
-
-def process_yaml(data):
-    if isinstance(data, dict):
-        result = {}
-        for key, value in data.items():
-            result[key] = process_yaml(value)
-        return result
-    elif isinstance(data, list):
-        return [process_yaml(item) for item in data]
-    else:
+def read_json_file(file_path):
+    with open(file_path, 'r') as json_file:
+        data = json.load(json_file)
         return data
-
 
 def get_value_from_dict(data_dict, key, default='Not Found'):
     keys = key.split('.')
@@ -32,26 +17,31 @@ def get_value_from_dict(data_dict, key, default='Not Found'):
     except (KeyError, TypeError):
         return default
 
-
 class PropertiesBuilder:
-
     def __init__(self):
-        my_path = os.path.abspath(os.path.dirname(__file__))
-        self.config_file_path = os.path.join(my_path, "..\config\settings.yaml")
-        self.settings_dict = read_yaml_file(self.config_file_path)
-        self.client_id = get_value_from_dict(self.settings_dict, "spotify.client_id")
-        self.client_secret = get_value_from_dict(self.settings_dict, "spotify.client_secret")
-        self.redirect_uri = get_value_from_dict(self.settings_dict, "spotify.redirect_uri")
-        self.playlist_liked_songs = get_value_from_dict(self.settings_dict, "spotify.playlist_liked_songs")
-        self.playlist_liked_albums = get_value_from_dict(self.settings_dict, "spotify.playlist_liked_albums")
-        self.download_path = get_value_from_dict(self.settings_dict, "config.download_path")
-        self.playlists_to_download = get_value_from_dict(self.settings_dict, "config.playlists_to_download").split("~")
-        self.playlists_config = get_value_from_dict(self.settings_dict, "config.playlists_config").split("~")
-        self.playlists_m3u = str(get_value_from_dict(self.settings_dict, "config.playlists_m3u")).split("~")
-        self.scope = get_value_from_dict(self.settings_dict, "spotify.scope")
+        self.config_file_path = r"C:\Users\Matthieu\.spotdl\config.json"  # Updated to JSON file
+        self.settings_dict = read_json_file(self.config_file_path)
+        self.client_id = get_value_from_dict(self.settings_dict, "client_id")
+        self.client_secret = get_value_from_dict(self.settings_dict, "client_secret")
+        self.redirect_uri = "http://localhost:8800/"
+        self.playlist_liked_songs = get_value_from_dict(self.settings_dict, "playlist_liked_songs")
+        self.playlist_liked_albums = get_value_from_dict(self.settings_dict, "playlist_liked_albums")
+        self.download_path = get_value_from_dict(self.settings_dict, "download_path")
+        self.playlists_to_download = get_value_from_dict(self.settings_dict, "playlists_to_download").split("~")
+        self.playlists_m3u = str(get_value_from_dict(self.settings_dict, "playlists_m3u")).split("~")
+        self.scope = get_value_from_dict(self.settings_dict, "scope")
         self.app_name = get_value_from_dict(self.settings_dict, "app_name")
-
 
 if __name__ == "__main__":
     propertiesBuilder = PropertiesBuilder()
     print(propertiesBuilder.settings_dict)
+    print(propertiesBuilder.client_id)
+    print(propertiesBuilder.client_secret)
+    print(propertiesBuilder.redirect_uri)
+    print(propertiesBuilder.playlist_liked_songs)
+    print(propertiesBuilder.playlist_liked_albums)
+    print(propertiesBuilder.download_path)
+    print(propertiesBuilder.playlists_to_download)
+    print(propertiesBuilder.playlists_m3u)
+    print(propertiesBuilder.scope)
+    print(propertiesBuilder.app_name)

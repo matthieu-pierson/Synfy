@@ -1,4 +1,5 @@
 import subprocess
+
 from synfy.models.PropertiesBuilder import PropertiesBuilder
 from synfy.models.SpotifyDataAccess import SpotifyDataAccess
 
