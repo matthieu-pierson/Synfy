@@ -1,5 +1,5 @@
 import spotipy
-from spotipy.oauth2 import SpotifyOAuth
+from spotipy.oauth2 import SpotifyOAuth, SpotifyClientCredentials
 
 
 def contains_FR_ors_is_empty(country_list):
@@ -32,9 +32,6 @@ class SpotifyDataAccess:
         self.playlist_id = None
         self.redirect_uri = propertiesBuilder.redirect_uri
         self.scope = propertiesBuilder.scope
-        print(self.client_id)
-        print(self.client_secret)
-        print(self.redirect_uri)
         print(self.scope)
         self.sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=self.client_id,
                                                             client_secret=self.client_secret,

@@ -21,11 +21,11 @@ def main():  # pragma: no cover
         * List all available tasks
         * Run an application (Flask, FastAPI, Django, etc.)
     """
-    configManager = ConfigManager(r"C:\Users\Matthieu\.spotdl\config.json")
     propertiesBuilder = PropertiesBuilder()
     appDataHandler = AppDataHandler(propertiesBuilder)
     spotifyDataAccess = SpotifyDataAccess(propertiesBuilder)
     spotDlWrapper = SpotDlWrapper(propertiesBuilder, spotifyDataAccess)
+    configManager = ConfigManager(r"C:\Users\Matthieu\.spotdl\config.json")
     spotifyDataAccess.create_playlist_from_uri_list(spotifyDataAccess.get_liked_songs(), propertiesBuilder.playlist_liked_songs)
     spotifyDataAccess.create_playlist_from_uri_list(spotifyDataAccess.get_liked_albums(), propertiesBuilder.playlist_liked_albums)
     print(propertiesBuilder.playlists_to_download)

@@ -9,6 +9,8 @@ class SpotDlWrapper:
         self.client_id = propertiesBuilder.client_id
         self.client_secret = propertiesBuilder.client_secret
         self.spotifyDataAccess = spotifyDataAccess
+        self.init_default_config()
+        self.download_ffmpeg()
 
     def _run_spotdl_command(self, args, message_success):
         try:
