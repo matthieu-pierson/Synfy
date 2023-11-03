@@ -17,7 +17,7 @@ class ConfigManager:
                 print(f"An error occurred: {e}")
             except Exception as e:
                 print(f"An unexpected error occurred: {e}")
-        download_path = r"D:\01_Music"
+        download_path = r"O:\Music"
         self.add_value("download_path", download_path)
         client_id = "2b7a812c80f34c3b8b37f7b1d46f2f46"
         client_secret = "2ff7254969d842f3855701e7960b7493"
@@ -28,7 +28,8 @@ class ConfigManager:
         self.add_value("client_secret", client_secret)
         self.add_value("output", download_path + r"\{year}\{artists} - {title}.{output-ext}")
         self.add_value("cookie_file", r"C:\Users\Matthieu\.spotdl\music.youtube.com_cookies.txt")
-        self.add_value("format", "flac")
+        self.add_value("format", "mp3")
+        self.add_value("bitrate", "0")
         self.add_value("threads", 8)
         self.add_value("playlists_to_download", "Liked Songs~Liked Albums~Mix 1")
         self.add_value("playlists_m3u", "True~True~True")
